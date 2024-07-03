@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-class MyApp extends StatefulWidget {
+import 'package:formation_app/presentation/resources/theme_manager.dart';
+class  MyApp extends StatefulWidget {
  MyApp._internal();
  int appState = 0;
  static final MyApp instance = MyApp._internal();
@@ -12,6 +13,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp (
+      theme :getApplicationTheme()
+    );
   }
 }
