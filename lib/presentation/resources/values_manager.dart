@@ -54,3 +54,8 @@ class AppPadding{
   static const double s180 = 180;
   static const double s200 = 200;
   }
+
+class DurationConstant {
+  static const int d300 = 300;
+  
+}

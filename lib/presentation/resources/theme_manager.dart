@@ -7,6 +7,7 @@ import 'package:formation_app/presentation/resources/values_manager.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     // main colors of the application
+    
     primaryColor: ColorManagrer.primary,
     primaryColorLight: ColorManagrer.primaryOpacity70,
     primaryColorDark: ColorManagrer.darkPrimary,
