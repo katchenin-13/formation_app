@@ -8,8 +8,8 @@ part of 'app_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _ApiServiceClient implements ApiServiceClient {
-  _ApiServiceClient(
+class _AppServiceClient implements AppServiceClient {
+  _AppServiceClient(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,11 +21,21 @@ class _ApiServiceClient implements ApiServiceClient {
   String? baseUrl;
 
   @override
-  Future<AuthenticationResponse> login() async {
+  Future<AuthenticationResponse> login(
+    String email,
+    String password,
+    String imei,
+    String deviceType,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = {
+      'email': email,
+      'password': password,
+      'imei': imei,
+      'deviceType': deviceType,
+    };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(Options(
       method: 'POST',

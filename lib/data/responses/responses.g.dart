@@ -18,9 +18,8 @@ Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
 
 CustomerResponse _$CustomerResponseFromJson(Map<String, dynamic> json) =>
     CustomerResponse(
-      (json['id'] as num?)?.toInt(),
+      json['id'] as String?,
       json['name'] as String?,
-      json['email'] as String?,
       (json['numOfNotifications'] as num?)?.toInt(),
     );
 
@@ -28,18 +27,17 @@ Map<String, dynamic> _$CustomerResponseToJson(CustomerResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'email': instance.email,
       'numOfNotifications': instance.numOfNotifications,
     };
 
-ConstactResponse _$ConstactResponseFromJson(Map<String, dynamic> json) =>
-    ConstactResponse(
+ContactsResponse _$ContactsResponseFromJson(Map<String, dynamic> json) =>
+    ContactsResponse(
       json['email'] as String?,
       json['phone'] as String?,
       json['link'] as String?,
     );
 
-Map<String, dynamic> _$ConstactResponseToJson(ConstactResponse instance) =>
+Map<String, dynamic> _$ContactsResponseToJson(ContactsResponse instance) =>
     <String, dynamic>{
       'email': instance.email,
       'phone': instance.phone,
@@ -54,7 +52,7 @@ AuthenticationResponse _$AuthenticationResponseFromJson(
           : CustomerResponse.fromJson(json['customer'] as Map<String, dynamic>),
       json['contacts'] == null
           ? null
-          : ConstactResponse.fromJson(json['contacts'] as Map<String, dynamic>),
+          : ContactsResponse.fromJson(json['contacts'] as Map<String, dynamic>),
     )
       ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?;

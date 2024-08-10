@@ -17,15 +17,14 @@ class BaseResponse {
 @JsonSerializable()
 class CustomerResponse {
   @JsonKey(name: "id")
-  int? id;
+  String? id;
   @JsonKey(name: "name")
   String? name;
-  @JsonKey(name: "email")
-  String? email;
+ 
   @JsonKey(name: "numOfNotifications")
   int? numOfNotifications;
 
-  CustomerResponse(this.id, this.name, this.email, this.numOfNotifications);
+  CustomerResponse(this.id, this.name, this.numOfNotifications);
 
   factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
       _$CustomerResponseFromJson(json);
@@ -33,7 +32,7 @@ class CustomerResponse {
 }
 
 @JsonSerializable()
-class ConstactResponse {
+class ContactsResponse {
   @JsonKey(name: "email")
   String? email;
   @JsonKey(name: "phone")
@@ -41,11 +40,11 @@ class ConstactResponse {
   @JsonKey(name: "link")
   String? link;
 
-  ConstactResponse(this.email, this.phone, this.link);
+  ContactsResponse(this.email, this.phone, this.link);
 
-  factory ConstactResponse.fromJson(Map<String, dynamic> json) =>
-      _$ConstactResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$ConstactResponseToJson(this);
+  factory ContactsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ContactsResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$ContactsResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -53,7 +52,7 @@ class AuthenticationResponse extends BaseResponse {
   @JsonKey(name: "customer")
   CustomerResponse? customer;
   @JsonKey(name: "contacts")
-  ConstactResponse? contacts;
+  ContactsResponse? contacts;
 
   AuthenticationResponse(this.customer, this.contacts);
 

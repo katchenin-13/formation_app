@@ -10,7 +10,7 @@ import 'package:formation_app/presentation/resources/strings_manager.dart';
 import 'package:formation_app/presentation/resources/values_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
-  const OnBoardingView({Key? key}) : super(key: key);
+  const OnBoardingView({super.key});
 
   @override
   _OnBoardingViewState createState() => _OnBoardingViewState();

@@ -36,13 +36,11 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
   /// The next index in the list after the current index.
   @override
   int goNext() {
-    
      int nextIndex = _currentIndex++;
     if (nextIndex >= _list.length) {
       _currentIndex = 0; //infinite loop to go to first item inside the slider
     }
     _postDataToView();
-
     return _currentIndex;
 
   }
