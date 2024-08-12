@@ -20,7 +20,7 @@
 
 import 'package:formation_app/data/network/failure.dart';
 import 'package:formation_app/data/request/loginrequest.dart';
-import 'package:formation_app/domain/model.dart';
+import 'package:formation_app/domain/model/model.dart';
 import 'package:dartz/dartz.dart';
 
 /// Classe abstraite qui définit le contrat pour les opérations de données

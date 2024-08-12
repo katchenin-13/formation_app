@@ -3,7 +3,7 @@
 // **************************************************************************
 
 import 'package:formation_app/data/responses/responses.dart';
-import 'package:formation_app/domain/model.dart';
+import 'package:formation_app/domain/model/model.dart';
 import 'package:formation_app/app/extensions.dart';
 
 const EMPTY = "";

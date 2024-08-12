@@ -5,7 +5,7 @@ import 'package:formation_app/data/network/error_handler.dart';
 import 'package:formation_app/data/network/failure.dart';
 import 'package:formation_app/data/network/network_info.dart';
 import 'package:formation_app/data/request/loginrequest.dart';
-import 'package:formation_app/domain/model.dart';
+import 'package:formation_app/domain/model/model.dart';
 import 'package:formation_app/domain/repository/repository.dart';
 
 class RepositoryImpl extends Repository {

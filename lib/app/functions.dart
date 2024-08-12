@@ -2,7 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:formation_app/domain/model.dart';
+import 'package:formation_app/domain/model/model.dart';
 import 'package:device_info/device_info.dart';
 
 Future<DeviceInfo> getDeviceDetails()async{

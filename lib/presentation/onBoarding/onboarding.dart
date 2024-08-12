@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:formation_app/domain/model.dart';
+import 'package:formation_app/domain/model/model.dart';
 import 'package:formation_app/presentation/onBoarding/onboarding_viewmodel.dart';
 import 'package:formation_app/presentation/resources/assets_manager.dart';
 import 'package:formation_app/presentation/resources/color_managrer.dart';
@@ -134,7 +134,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               child: SizedBox(
                 height: AppSize.s20,
                 width: AppSize.s20,
-                child: SvgPicture.asset(ImageAssets.rightArrowIc),
+                child: SvgPicture.asset(ImageAssets.rightarrowIc),
               ),
               onTap: () {
                 // go to next slide
