@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:formation_app/domain/model/model.dart';
+import 'package:formation_app/presentation/login/login_view.dart';
 import 'package:formation_app/presentation/onBoarding/onboarding_viewmodel.dart';
 import 'package:formation_app/presentation/resources/assets_manager.dart';
 import 'package:formation_app/presentation/resources/color_managrer.dart';
 import 'package:formation_app/presentation/resources/routes_manager.dart';
 import 'package:formation_app/presentation/resources/strings_manager.dart';
 import 'package:formation_app/presentation/resources/values_manager.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -74,8 +77,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, Routes.loginRoute);
+                      
+                      Get.to(LoginView());
+                      // Navigator.pushReplacementNamed(
+                      //     context, Routes.loginRoute);
                     },
                     child: Text(
                       AppStrings.skip,

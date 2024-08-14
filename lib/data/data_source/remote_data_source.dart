@@ -16,8 +16,6 @@ class RemoteDataSourceImplementer implements RemoteDataSource {
       loginRequest.password,
       loginRequest.imei,
       loginRequest.deviceType,
-      
     );
   }
-  
 }

@@ -22,12 +22,11 @@ import 'package:formation_app/data/network/failure.dart';
 import 'package:formation_app/data/request/loginrequest.dart';
 import 'package:formation_app/domain/model/model.dart';
 import 'package:dartz/dartz.dart';
-
 /// Classe abstraite qui définit le contrat pour les opérations de données
 /// liées à l'authentification des utilisateurs. La méthode `login` doit être
 /// implémentée par toute classe qui étend cette classe abstraite `Repository`.
-///
 /// Un exemple d'implémentation pourrait être l'interaction avec une API REST
+///
 /// pour authentifier l'utilisateur.
 ///
 /// @returns [Future<Either<Failure, Authentication>>] - Un Future qui se

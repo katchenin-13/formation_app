@@ -47,6 +47,7 @@ dependencies:
   device_info: ^2.0.3
   freezed: ^2.5.2
   get_it: ^7.7.0
+  get: ^4.6.6
  # connectivity_plus: ^6.0.4
 
  

@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:formation_app/data/data_source/remote_data_source.dart';
-import 'package:formation_app/data/network/app_api.dart';
-import 'package:formation_app/data/network/network_info.dart';
-import 'package:formation_app/data/repository_impl/repository_impl.dart';
-import 'package:formation_app/domain/repository/repository.dart';
-import 'package:formation_app/domain/usecase/login_usecase.dart';
+import 'package:formation_app/app/di.dart';
 import 'package:formation_app/presentation/login/login_viewmodel.dart';
 import 'package:formation_app/presentation/resources/assets_manager.dart';
 import 'package:formation_app/presentation/resources/color_managrer.dart';
@@ -15,24 +9,17 @@ import 'package:formation_app/presentation/resources/values_manager.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
-
   @override
   State<LoginView> createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-  AppServiceClient _appServiceClient = AppServiceClient();
-  NetworkInfoImpl _networkInfo = NetworkInfoImpl();
-  RemoteDataSource _remoteDataSource = RemoteDataSourceImplementer();
-  Repository _repository = RepositoryImpl( _remoteDataSource, _networkInfo);
-  LoginUseCase loginUseCase = LoginUseCase(_repository);
-  LoginViewModel _viewModel = LoginViewModel(null); 
-
+  LoginViewModel _viewModel = instance<LoginViewModel>();
+ // AppPreferences _appPreferences = instance<AppPreferences>();
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
-
-  final _formKey =GlobalKey<FormState>();
   @override
   _bind() {
     _viewModel.start();
