@@ -6,6 +6,8 @@ import 'package:formation_app/presentation/resources/color_managrer.dart';
 import 'package:formation_app/presentation/resources/routes_manager.dart';
 import 'package:formation_app/presentation/resources/strings_manager.dart';
 import 'package:formation_app/presentation/resources/values_manager.dart';
+import 'package:get/get.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

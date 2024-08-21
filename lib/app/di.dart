@@ -1,4 +1,3 @@
-import 'package:formation_app/app/app_prefs.dart';
 import 'package:formation_app/data/data_source/remote_data_source.dart';
 import 'package:formation_app/data/network/app_api.dart';
 import 'package:formation_app/data/network/dio_factory.dart';
@@ -7,9 +6,12 @@ import 'package:formation_app/data/repository_impl/repository_impl.dart';
 import 'package:formation_app/domain/repository/repository.dart';
 import 'package:formation_app/domain/usecase/login_usecase.dart';
 import 'package:formation_app/presentation/login/login_viewmodel.dart';
-import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'app_prefs.dart';
 
 final instance = GetIt.instance;
 
@@ -24,8 +26,8 @@ Future<void> initAppModule() async {
       .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
 
   // network info
-  instance.registerLazySingleton<NetworkInfo>(
-      () => NetworkInfoImpl(InternetConnectionChecker()));
+  instance.registerLazySingleton<NetworkInfoImpl>(
+     () => NetworkInfoImpl(InternetConnectionChecker()));
 
   // dio factory
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
@@ -38,13 +40,11 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImplementer(instance()));
 
-  // local data source
-  instance.registerLazySingleton<Repository>(
-      () => RepositoryImpl(instance(),instance()));                                                              
+  // // local data source
 
-  // // repository
-  // instance.registerLazySingleton<Repository>(
-  //     () => RepositoryImpl(instance(), instance(), instance()));
+  // repository
+  instance.registerLazySingleton<Repository>(
+      () => RepositoryImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -53,3 +53,11 @@ initLoginModule() {
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
 }
+
+
+
+
+
+
+
+

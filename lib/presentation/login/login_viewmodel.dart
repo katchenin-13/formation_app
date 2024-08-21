@@ -69,7 +69,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInput, LoginViewMo
   /// Méthode pour exécuter la connexion en utilisant `_loginUseCase`.
   @override
   login() async {
-    (await _loginUseCase?.execute(LoginUseCaseInput(loginObject.userName, loginObject.password)))?.fold(
+    (await _loginUseCase.execute(LoginUseCaseInput(loginObject.userName, loginObject.password))).fold(
       (failure) => {
         // En cas d'échec, afficher le message d'erreur.
         print(failure.message)

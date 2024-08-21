@@ -5,11 +5,11 @@ class Test extends StatelessWidget {
   const Test({super.key});
 
 void updateAppState(){
-  MyApp.instance.appState =10;
+ // MyApp.instance.appState =10;
 }
 
 void getAppState(){
-  print(MyApp.instance.appState);
+ // print(MyApp.instance.appState);
 }
 
   @override

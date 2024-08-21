@@ -1,0 +1,55 @@
+import 'package:dio/dio.dart';
+import 'package:formation_app/app/app_prefs.dart';
+import 'package:formation_app/data/data_source/remote_data_source.dart';
+import 'package:formation_app/data/network/dio_factory.dart';
+import 'package:formation_app/domain/repository/repository.dart';
+import 'package:formation_app/presentation/login/login_viewmodel.dart';
+import 'package:get/get.dart';
+import 'package:formation_app/data/network/network_info.dart';
+import 'package:formation_app/data/network/app_api.dart';
+import 'package:formation_app/data/repository_impl/repository_impl.dart';
+import 'package:formation_app/domain/usecase/login_usecase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+   Future<void> initAppModule() async {
+    // SharedPreferences
+    final sharedPrefs = await SharedPreferences.getInstance();
+    Get.put<SharedPreferences>(sharedPrefs);
+
+    Get.put<AppPreferences>(Get.find< AppPreferences>()); 
+
+       // network info
+    Get.put<NetworkInfo>(
+        NetworkInfoImpl(Get.find<InternetConnectionChecker>()));
+    
+
+    Get.put<DioFactory>(Get.find<AppPreferences>());
+    // Dio & AppServiceClient
+    final dio = Dio(); // Assuming Dio is set up here
+    Get.put<AppServiceClient>(AppServiceClient(dio));
+
+    // RemoteDataSource
+    Get.put<RemoteDataSource>(RemoteDataSourceImplementer(Get.find<AppServiceClient>()));
+ 
+    // Repository
+    Get.put<Repository>(
+        RepositoryImpl(Get.find<RemoteDataSource>(), Get.find<NetworkInfoImpl>()));
+
+    // Use Cases
+    Get.put<LoginUseCase>(LoginUseCase(Get.find<Repository>()));
+
+    // Controllers/ViewModels
+    initLoginModule();
+  }
+
+void initLoginModule() {
+  // Check if LoginUseCase is not registered yet
+  if (!Get.isRegistered<LoginUseCase>()) {
+    // Register the LoginUseCase
+    Get.lazyPut<LoginUseCase>(() => LoginUseCase(Get.find()));
+
+    // Register the LoginController (équivalent de LoginViewModel)
+    Get.lazyPut<LoginViewModel>(() => LoginViewModel(Get.find()));
+  }
+}

@@ -78,9 +78,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   child: TextButton(
                     onPressed: () {
                       
-                      Get.to(LoginView());
-                      // Navigator.pushReplacementNamed(
-                      //     context, Routes.loginRoute);
+                      //Get.to(LoginView());
+                       Navigator.pushReplacementNamed(
+                           context, Routes.loginRoute);
                     },
                     child: Text(
                       AppStrings.skip,
