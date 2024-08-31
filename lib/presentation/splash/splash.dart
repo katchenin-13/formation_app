@@ -33,8 +33,8 @@ class _SplashViewState extends State<SplashView> {
             {
               _appPreferences
                   .isOnBoardingScreenView()
-                  .then((isOnBoardingScreenView) => {
-                        if (isOnBoardingScreenView)
+                  .then((isOnBoardingScreenViewed) => {
+                        if (isOnBoardingScreenViewed)
                           {
                             //Navigate to login
                             Navigator.pushReplacementNamed(
