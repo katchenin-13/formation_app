@@ -17,4 +17,19 @@ abstract class AppServiceClient{
     @Field("deviceType") String deviceType,
   );
 
+  @POST("/customer/forgotPassword")
+  Future<ForgotPasswordResponse>forgotPassword(
+    @Field("email") String email,
+  );
+
+  // @POST("/customer/register")
+  // Future<AuthenticationResponse>register(
+  //   @Field("fName") String fName,
+  //   @Field("lName") String lName,
+  //   @Field("email") String email,
+  //   @Field("password") String password,
+  //   @Field("imei") String imei,
+  //   @Field("deviceType") String deviceType,
+  // );
+
 }

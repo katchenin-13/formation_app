@@ -43,4 +43,5 @@ abstract class Repository {
   ///          résout en un type Either, contenant soit un `Failure` en cas
   ///          d'erreur, soit un objet `Authentication` en cas de succès.
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
+  Future<Either<Failure, String>> forgotPassword(String email);
 }

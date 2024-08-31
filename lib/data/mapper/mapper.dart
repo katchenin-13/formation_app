@@ -58,4 +58,11 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
         this?.contacts ?.toDomain() // Mappe `contacts` en utilisant `ContactsResponseMapper`.
         );
   }
+
+}
+/// Extension sur `String` pour fournir une fonction de mapping vers le modèle de domaine `Failure`.
+extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
+    String toDomain() {
+        return this?.support?.orEmpty() ?? EMPTY;
+    }
 }
