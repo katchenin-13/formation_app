@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:formation_app/app/app_prefs.dart';
+import 'package:formation_app/app/di.dart';
 import 'package:formation_app/domain/model/model.dart';
-import 'package:formation_app/presentation/login/login_view.dart';
 import 'package:formation_app/presentation/onBoarding/onboarding_viewmodel.dart';
 import 'package:formation_app/presentation/resources/assets_manager.dart';
 import 'package:formation_app/presentation/resources/color_managrer.dart';
 import 'package:formation_app/presentation/resources/routes_manager.dart';
 import 'package:formation_app/presentation/resources/strings_manager.dart';
 import 'package:formation_app/presentation/resources/values_manager.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -23,10 +23,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   //variables et leur initiation
   PageController _pageController = PageController(initialPage: 0);
   OnBoardingViewModel _viewModel = OnBoardingViewModel(); 
+  AppPreferences _appPreferences = instance<AppPreferences>();
 
 //les methodes ou fonctions de la classe
   _bind() {
-    _viewModel.start();
+    _appPreferences.setOnBoardingScreenView();
+       _viewModel.start();
+
   }
 
   @override
@@ -49,12 +52,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       return Container();
     } else {
       return  Scaffold(
-        backgroundColor: ColorManagrer.white,
+        backgroundColor: ColorManager.white,
         appBar: AppBar(
-          backgroundColor: ColorManagrer.white,
+          backgroundColor: ColorManager.white,
           elevation: AppSize.s0,
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: ColorManagrer.white,
+            statusBarColor: ColorManager.white,
             statusBarBrightness: Brightness.dark,
             statusBarIconBrightness: Brightness.dark,
           ),
@@ -69,7 +72,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               return OnBoardingPage(sliderViewObject.sliderObject);
             }),
         bottomSheet: Container(
-          color: ColorManagrer.white,
+          color: ColorManager.white,
           height: AppSize.s100,
           child: Column(
             children: [
@@ -78,7 +81,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   child: TextButton(
                     onPressed: () {
                       
-                      //Get.to(LoginView());
                        Navigator.pushReplacementNamed(
                            context, Routes.loginRoute);
                     },
@@ -99,7 +101,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Container(
-      color: ColorManagrer.primary,
+      color: ColorManager.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

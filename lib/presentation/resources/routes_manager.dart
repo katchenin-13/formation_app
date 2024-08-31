@@ -30,7 +30,7 @@ class  RoutesGenerator{
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
 
       case Routes.loginRoute:
-      initLoginModule();
+        initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
 
       case Routes.registerRoute:
@@ -47,7 +47,7 @@ class  RoutesGenerator{
         title: Text(AppStrings.noRouteFound)
         ),
 
-        body: Center(child: Text(AppStrings.noRouteFound ,),
+        body: const Center(child: Text(AppStrings.noRouteFound ,),
 
       ),
        ),

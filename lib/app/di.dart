@@ -25,9 +25,12 @@ Future<void> initAppModule() async {
   instance
       .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
 
-  // network info
+  //network info
+  instance.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(InternetConnectionChecker()));
+  // network info implementation
   instance.registerLazySingleton<NetworkInfoImpl>(
-     () => NetworkInfoImpl(InternetConnectionChecker()));
+      () => NetworkInfoImpl(InternetConnectionChecker()));
 
   // dio factory
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
@@ -41,10 +44,14 @@ Future<void> initAppModule() async {
       () => RemoteDataSourceImplementer(instance()));
 
   // // local data source
-
+  
   // repository
   instance.registerLazySingleton<Repository>(
       () => RepositoryImpl(instance(), instance()));
+
+  // //repository impl
+  // instance.registerLazySingleton<RepositoryImpl>(
+  //     () => RepositoryImpl(instance(), instance()));
 }
 
 initLoginModule() {
@@ -53,11 +60,3 @@ initLoginModule() {
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
 }
-
-
-
-
-
-
-
-

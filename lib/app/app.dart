@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:formation_app/presentation/resources/routes_manager.dart';
 import 'package:formation_app/presentation/resources/theme_manager.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 class MyApp extends StatefulWidget {
+   MyApp._internal(); // private named constructor
+  int appState = 0;
+  static final MyApp instance =
+      MyApp._internal(); // single instance -- singleton
 
+  factory MyApp() => instance; 
 
   @override
   State<MyApp> createState() => _MyAppState();

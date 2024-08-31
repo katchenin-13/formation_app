@@ -6,7 +6,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initAppModule(); // Configurez les dépendances
   runApp(MyApp()   
-    
   );
 }
 
