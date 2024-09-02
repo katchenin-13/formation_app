@@ -6,3 +6,4 @@ class LoginRequest {
 
   LoginRequest(this.email, this.password, this.imei, this.deviceType);
 }
+

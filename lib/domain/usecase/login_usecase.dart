@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:formation_app/app/functions.dart';
 import 'package:formation_app/data/network/failure.dart';
-import 'package:formation_app/data/request/loginrequest.dart';
+import 'package:formation_app/data/request/request.dart';
 import 'package:formation_app/domain/model/model.dart';
 import 'package:formation_app/domain/repository/repository.dart';
 import 'package:formation_app/domain/usecase/base_usecase.dart';

@@ -1,5 +1,5 @@
 import 'package:formation_app/data/network/app_api.dart';
-import 'package:formation_app/data/request/loginrequest.dart';
+import 'package:formation_app/data/request/request.dart';
 import 'package:formation_app/data/responses/responses.dart';
 
 abstract class RemoteDataSource {

@@ -17,16 +17,11 @@ import 'package:formation_app/presentation/common/state_renderer/state_renderer.
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
-  StreamController _userNameStreamController =
-      StreamController<String>.broadcast();
-  StreamController _passwordStreamController =
-      StreamController<String>.broadcast();
-
-  StreamController _isAllInputsValidStreamController =
-      StreamController<void>.broadcast();
-
-  StreamController isUserLoggedInSuccessfullyStreamController =
-      StreamController<bool>();
+       
+  final StreamController _userNameStreamController = StreamController<String>.broadcast();
+  final StreamController _passwordStreamController = StreamController<String>.broadcast();
+  final StreamController _isAllInputsValidStreamController =StreamController<void>.broadcast();
+  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>();
 
   var loginObject = LoginObject("", "");
 

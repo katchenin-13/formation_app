@@ -4,7 +4,7 @@ import 'package:formation_app/data/mapper/mapper.dart';
 import 'package:formation_app/data/network/error_handler.dart';
 import 'package:formation_app/data/network/failure.dart';
 import 'package:formation_app/data/network/network_info.dart';
-import 'package:formation_app/data/request/loginrequest.dart';
+import 'package:formation_app/data/request/request.dart';
 import 'package:formation_app/domain/model/model.dart';
 import 'package:formation_app/domain/repository/repository.dart';
 
@@ -16,7 +16,7 @@ class RepositoryImpl extends Repository {
   @override
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest) async {
     if(await _networkInfoImpl.isConnected) {
-      try {
+            try {
          final response = await _remoteDataSource.login(loginRequest);
         if (response.status == ApiInternalStatus.SUCCESS) {
           // return data(success)

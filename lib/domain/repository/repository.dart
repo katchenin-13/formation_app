@@ -19,7 +19,7 @@
 // **************************************************************************
 
 import 'package:formation_app/data/network/failure.dart';
-import 'package:formation_app/data/request/loginrequest.dart';
+import 'package:formation_app/data/request/request.dart';
 import 'package:formation_app/domain/model/model.dart';
 import 'package:dartz/dartz.dart';
 /// Classe abstraite qui définit le contrat pour les opérations de données
@@ -42,6 +42,7 @@ abstract class Repository {
   /// @returns [Future<Either<Failure, Authentication>>] - Un Future qui se
   ///          résout en un type Either, contenant soit un `Failure` en cas
   ///          d'erreur, soit un objet `Authentication` en cas de succès.
+  
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
   Future<Either<Failure, String>> forgotPassword(String email);
 }
