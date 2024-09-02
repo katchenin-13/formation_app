@@ -123,12 +123,13 @@ class LoginViewModel extends BaseViewModel
 }
 
 mixin LoginViewModelInputs {
+  
+  login();
   // three functions for actions
   setUserName(String userName);
 
   setPassword(String password);
 
-  login();
 
 // two sinks for streams
   Sink get inputUserName;

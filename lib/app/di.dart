@@ -6,8 +6,11 @@ import 'package:formation_app/data/repository_impl/repository_impl.dart';
 import 'package:formation_app/domain/repository/repository.dart';
 import 'package:formation_app/domain/usecase/forgot_password_usecase.dart';
 import 'package:formation_app/domain/usecase/login_usecase.dart';
+import 'package:formation_app/domain/usecase/register_usecase.dart';
 import 'package:formation_app/presentation/forgot_password/forgot_password_viewmodel.dart';
 import 'package:formation_app/presentation/login/login_viewmodel.dart';
+import 'package:formation_app/presentation/register/register_viewmodel.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'package:get_it/get_it.dart';
@@ -74,15 +77,16 @@ initForgotPasswordModule() {
   }
 }
 
-// initRegisterModule() {
-//   if (!GetIt.I.isRegistered<RegisterUseCase>()) {
-//     instance
-//         .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
-//     instance.registerFactory<RegisterViewModel>(
-//         () => RegisterViewModel(instance()));
-//     instance.registerFactory<ImagePicker>(() => ImagePicker());
-//   }
-// }
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(() => RegisterViewModel(instance()));
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
+  }
+}
+
+
 
 // initHomeModule() {
 //   if (!GetIt.I.isRegistered<HomeUseCase>()) {
