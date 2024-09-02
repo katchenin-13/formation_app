@@ -66,3 +66,4 @@ extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
         return this?.support?.orEmpty() ?? EMPTY;
     }
 }
+
