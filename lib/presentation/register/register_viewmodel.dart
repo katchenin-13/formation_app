@@ -10,57 +10,62 @@ import 'package:formation_app/presentation/common/state_renderer/state_renderer.
 
 class RegisterViewModel extends BaseViewModel
     with RegisterViewModelInputs, RegisterViewModelOutputs {
-  final StreamController _userNameStreamController =
-      StreamController<String>.broadcast();
-  final StreamController _mobileNumberStreamController =
-      StreamController<String>.broadcast();
-  final StreamController _emailStreamController =
-      StreamController<String>.broadcast();
-  final StreamController _passwordStreamController =
-      StreamController<String>.broadcast();
-  final StreamController _profilePictureStreamController =
-      StreamController<File>.broadcast();
-  final StreamController _isAllInputsValidStreamController =
-      StreamController<void>.broadcast();
-  final StreamController isUserLoggedInSuccessfullyStreamController =
-      StreamController<bool>();
+  //les flux de sortie de la classe RegisterViewModel
+  final StreamController _userNameStreamController = StreamController<String>.broadcast();
+  final StreamController _mobileNumberStreamController = StreamController<String>.broadcast();
+  final StreamController _emailStreamController = StreamController<String>.broadcast();
+  final StreamController _passwordStreamController = StreamController<String>.broadcast();
+  final StreamController _profilePictureStreamController = StreamController<File>.broadcast();
+  final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
+  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>();
+
+  // les variables de la classe
   RegisterUseCase _registerUseCase;
+
+  //le constructeur de la classe
   RegisterViewModel(this._registerUseCase);
+
+  // les fonctions de l'interface RegisterViewModelInputs
   var registerViewObject = RegisterObject("", "", "", "", "", "");
+
+  // la fonction start
   @override
   void start() {
     inputState.add(ContentState());
   }
-  
+
+  // les fonctions de la classe
   @override
-  Register() async{
-    inputState.add(
-      LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE,));
-      (await _registerUseCase.execute(RegisterUseCaseInput(
-         registerViewObject.mobileNumber,
-        registerViewObject.countryMobileCode,
-        registerViewObject.userName,
-        registerViewObject.email,
-        registerViewObject.password,
-        registerViewObject.profilePicture
-      ))).fold(
-        (failure) {
-          inputState.add(
-            ErrorState(
-             StateRendererType.POPUP_ERROR_STATE,
-              failure.message,
-            ),
-          );
-        },
-        (data) {
-          inputState.add(  ContentState()); 
-          isUserLoggedInSuccessfullyStreamController.add(true);
-        },);
+  register() async {
+    inputState.add(LoadingState(
+      stateRendererType: StateRendererType.POPUP_LOADING_STATE,
+    ));
+    (await _registerUseCase.execute(RegisterUseCaseInput(
+            registerViewObject.mobileNumber,
+            registerViewObject.countryMobileCode,
+            registerViewObject.userName,
+            registerViewObject.email,
+            registerViewObject.password,
+            registerViewObject.profilePicture)))
+        .fold(
+      (failure) {
+        inputState.add(
+          ErrorState(
+            StateRendererType.POPUP_ERROR_STATE,
+            failure.message,
+          ),
+        );
+      },
+      (data) {
+        inputState.add(ContentState());
+        isUserLoggedInSuccessfullyStreamController.add(true);
+      },
+    );
   }
 
   @override
   void dispose() {
-   _isAllInputsValidStreamController.close();
+    _isAllInputsValidStreamController.close();
     _userNameStreamController.close();
     _mobileNumberStreamController.close();
     _emailStreamController.close();
@@ -70,7 +75,7 @@ class RegisterViewModel extends BaseViewModel
     super.dispose();
   }
 
-   @override
+  @override
   setCountryCode(String countryCode) {
     if (countryCode.isNotEmpty) {
       // update register view object with countryCode value
@@ -152,27 +157,29 @@ class RegisterViewModel extends BaseViewModel
     }
     _validate();
   }
-  
+
+ // les flux  inputs de l'interface RegisterViewModelInputs
   @override
   Sink get inputAllInputsValid => _isAllInputsValidStreamController.sink;
-  
+
   @override
   Sink get inputEmail => _emailStreamController.sink;
-  
+
   @override
   Sink get inputMobileNumber => _mobileNumberStreamController.sink;
-  
+
   @override
   Sink get inputProfilePicture => _profilePictureStreamController.sink;
-  
+
   @override
   Sink get inputUPassword => _passwordStreamController.sink;
-  
+
   @override
   Sink get inputUserName => _userNameStreamController;
-  
-  // -- outputs
 
+
+
+  // -- outputs les flux de sortie de l'interface RegisterViewModelOutputs
   @override
   Stream<bool> get outputIsAllInputsValid =>
       _isAllInputsValidStreamController.stream.map((_) => _validateAllInputs());
@@ -215,9 +222,7 @@ class RegisterViewModel extends BaseViewModel
   Stream<File?> get outputProfilePicture =>
       _profilePictureStreamController.stream.map((file) => file);
 
-
-
-    // -- private methods
+  // -- private methods
   bool _isUserNameValid(String userName) {
     return userName.length >= 8;
   }
@@ -230,7 +235,7 @@ class RegisterViewModel extends BaseViewModel
     return password.length >= 8;
   }
 
-  bool _validateAllInputs(){
+  bool _validateAllInputs() {
     return registerViewObject.profilePicture.isNotEmpty &&
         registerViewObject.email.isNotEmpty &&
         registerViewObject.password.isNotEmpty &&
@@ -239,16 +244,13 @@ class RegisterViewModel extends BaseViewModel
         registerViewObject.countryMobileCode.isNotEmpty;
   }
 
-  _validate(){
+  _validate() {
     inputAllInputsValid.add(null);
   }
-  
 }
 
-
-
 mixin RegisterViewModelInputs {
-  Register();
+  register();
   setUserName(String userName);
   setMobileNumber(String mobileNumber);
   setCountryCode(String countryCode);
@@ -256,17 +258,11 @@ mixin RegisterViewModelInputs {
   setPassword(String password);
   setProfilePicture(File file);
 
-Sink get inputUserName;
-
+  Sink get inputUserName;
   Sink get inputMobileNumber;
-
   Sink get inputEmail;
-
   Sink get inputUPassword;
-  
-
   Sink get inputProfilePicture;
-
   Sink get inputAllInputsValid;
 }
 
