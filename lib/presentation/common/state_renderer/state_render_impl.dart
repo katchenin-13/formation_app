@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 abstract class FlowState {
   StateRendererType getStateRendererType();
-
   String getMessage();
+
+  
 }
 
 // Loading State (POPUP, FULL SCREEN)

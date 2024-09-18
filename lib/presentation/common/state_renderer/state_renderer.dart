@@ -141,13 +141,10 @@ class StateRenderer extends StatelessWidget {
           width: AppSize.s180,
           child: ElevatedButton(
               onPressed: () {
-                if (stateRendererType ==
-                    StateRendererType.FULL_SCREEN_ERROR_STATE) {
-                  retryActionFunction
-                      ?.call(); // to call the API function again to retry
+                if (stateRendererType == StateRendererType.FULL_SCREEN_ERROR_STATE) {
+                  retryActionFunction?.call(); // to call the API function again to retry
                 } else {
-                  Navigator.of(context)
-                      .pop(); // popup state error so we need to dismiss the dialog
+                  Navigator.of(context).pop(); // popup state error so we need to dismiss the dialog
                 }
               },
               child: Text(buttonTitle)),

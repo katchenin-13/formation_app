@@ -18,13 +18,13 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginViewModel _viewModel = instance<LoginViewModel>();
-  AppPreferences _appPreferences = instance<AppPreferences>();
-  TextEditingController _userNameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  @override
+  
   _bind() {
     _viewModel.start();
 
@@ -33,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
     _passwordController
         .addListener(() => _viewModel.setPassword(_passwordController.text));
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
-        .listen((isSuccessLpggedIn) {
+        .listen((isSuccessLoggedIn) {
       SchedulerBinding.instance?.addPostFrameCallback((_) {
         // navigate to main screen
         _appPreferences.setIsUserLoggedIn();
@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
           child: Form(
             key: _formKey,
             child: Column(children: [
-              Image(image: AssetImage(ImageAssets.splashLogo)),
+             const Image(image: AssetImage(ImageAssets.splashLogo)),
               const SizedBox(
                 height: AppSize.s28,
               ),
@@ -139,7 +139,7 @@ class _LoginViewState extends State<LoginView> {
                               _viewModel.login();
                             }
                           : null,
-                      child: Text(
+                      child: const Text(
                         AppStrings.login,
                       ),
                     ),
@@ -147,7 +147,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: AppPadding.p8,
                   left: AppPadding.p28,
                   right: AppPadding.p28,

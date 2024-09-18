@@ -12,7 +12,6 @@ const ZERO = 0;
 /// Extension sur `CustomerResponse?` pour fournir une fonction de mapping vers le modèle de domaine `Customer`.
 extension CustomerResponseMapper on CustomerResponse? {
   /// Convertit un objet nullable `CustomerResponse` en un objet non-nullable `Customer`.
-  ///
   /// Cette méthode gère les valeurs nulles en fournissant des valeurs par défaut :
   /// - `id` est mappé à une chaîne vide si nul.
   /// - `name` est mappé à une chaîne vide si nul.
@@ -31,11 +30,11 @@ extension CustomerResponseMapper on CustomerResponse? {
 /// Extension sur `ContactsResponse?` pour fournir une fonction de mapping vers le modèle de domaine `Contacts`.
 extension ContactsResponseMapper on ContactsResponse? {
   /// Convertit un objet nullable `ContactsResponse` en un objet non-nullable `Contacts`.
-  ///
   /// Cette méthode gère les valeurs nulles en fournissant des valeurs par défaut :
   /// - `phone` est mappé à une chaîne vide si nul.
   /// - `email` est mappé à une chaîne vide si nul.
   /// - `link` est mappé à une chaîne vide si nul.
+  
   Contacts toDomain() {
     return Contacts(
         this?.phone?.orEmpty() ??EMPTY, // Mappe `phone` à une chaîne vide si nul.

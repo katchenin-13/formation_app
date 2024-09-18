@@ -121,6 +121,7 @@ class RegisterViewModel extends BaseViewModel
     inputUPassword.add(password);
     if (_isPasswordValid(password)) {
       // update register view object with password value
+      
       registerViewObject = registerViewObject.copyWith(
           password: password); // using data class like kotlin
     } else {
@@ -181,46 +182,25 @@ class RegisterViewModel extends BaseViewModel
 
   // -- outputs les flux de sortie de l'interface RegisterViewModelOutputs
   @override
-  Stream<bool> get outputIsAllInputsValid =>
-      _isAllInputsValidStreamController.stream.map((_) => _validateAllInputs());
-
+  Stream<bool> get outputIsAllInputsValid => _isAllInputsValidStreamController.stream.map((_) => _validateAllInputs());
   @override
-  Stream<bool> get outputIsUserNameValid => _userNameStreamController.stream
-      .map((userName) => _isUserNameValid(userName));
-
+  Stream<bool> get outputIsUserNameValid => _userNameStreamController.stream .map((userName) => _isUserNameValid(userName));
   @override
-  Stream<String?> get outputErrorUserName => outputIsUserNameValid
-      .map((isUserNameValid) => isUserNameValid ? null : "Invalid username");
-
+  Stream<String?> get outputErrorUserName => outputIsUserNameValid .map((isUserNameValid) => isUserNameValid ? null : "Invalid username");
   @override
-  Stream<bool> get outputIsEmailValid =>
-      _emailStreamController.stream.map((email) => isEmailValid(email));
-
+  Stream<bool> get outputIsEmailValid => _emailStreamController.stream.map((email) => isEmailValid(email));
   @override
-  Stream<String?> get outputErrorEmail => outputIsEmailValid
-      .map((isEmailValid) => isEmailValid ? null : "Invalid Email");
-
+  Stream<String?> get outputErrorEmail => outputIsEmailValid .map((isEmailValid) => isEmailValid ? null : "Invalid Email");
   @override
-  Stream<bool> get outputIsMobileNumberValid =>
-      _mobileNumberStreamController.stream
-          .map((mobileNumber) => _isMobileNumberValid(mobileNumber));
-
+  Stream<bool> get outputIsMobileNumberValid => _mobileNumberStreamController.stream     .map((mobileNumber) => _isMobileNumberValid(mobileNumber));
   @override
-  Stream<String?> get outputErrorMobileNumber =>
-      outputIsMobileNumberValid.map((isMobileNumberValid) =>
-          isMobileNumberValid ? null : "Invalid Mobile Number");
-
+  Stream<String?> get outputErrorMobileNumber => outputIsMobileNumberValid.map((isMobileNumberValid) =>     isMobileNumberValid ? null : "Invalid Mobile Number");
   @override
-  Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream
-      .map((password) => _isPasswordValid(password));
-
+  Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream.map((password) => _isPasswordValid(password));
   @override
-  Stream<String?> get outputErrorPassword => outputIsPasswordValid
-      .map((isPasswordValid) => isPasswordValid ? null : "Invalid Password");
-
+  Stream<String?> get outputErrorPassword => outputIsPasswordValid.map((isPasswordValid) => isPasswordValid ? null : "Invalid Password");
   @override
-  Stream<File?> get outputProfilePicture =>
-      _profilePictureStreamController.stream.map((file) => file);
+  Stream<File?> get outputProfilePicture => _profilePictureStreamController.stream.map((file) => file);
 
   // -- private methods
   bool _isUserNameValid(String userName) {
@@ -268,22 +248,13 @@ mixin RegisterViewModelInputs {
 
 mixin RegisterViewModelOutputs {
   Stream<bool> get outputIsUserNameValid;
-
   Stream<String?> get outputErrorUserName;
-
   Stream<bool> get outputIsMobileNumberValid;
-
   Stream<String?> get outputErrorMobileNumber;
-
   Stream<bool> get outputIsEmailValid;
-
   Stream<String?> get outputErrorEmail;
-
   Stream<bool> get outputIsPasswordValid;
-
   Stream<String?> get outputErrorPassword;
-
   Stream<File?> get outputProfilePicture;
-
   Stream<bool> get outputIsAllInputsValid;
 }

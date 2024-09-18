@@ -22,8 +22,8 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
-  RegisterViewModel _viewModel = instance<RegisterViewModel>();
-  AppPreferences _appPreferences = instance<AppPreferences>();
+  final RegisterViewModel _viewModel = instance<RegisterViewModel>();
+ final  AppPreferences _appPreferences = instance<AppPreferences>();
   ImagePicker picker = instance<ImagePicker>();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _userNameTextEditingController = TextEditingController();
@@ -31,7 +31,6 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _emailTextEditingController = TextEditingController();
   final TextEditingController _passwordEditingController = TextEditingController();
 
-  @override
   void iniState(){
     super.initState();
     _bind();
@@ -90,7 +89,7 @@ class _RegisterViewState extends State<RegisterView> {
  
  Widget _getContentWidget() {
     return Container(
-        padding: EdgeInsets.only(top: AppPadding.p30),
+        padding: const EdgeInsets.only(top: AppPadding.p30),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
