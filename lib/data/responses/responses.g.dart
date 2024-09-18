@@ -184,5 +184,5 @@ Map<String, dynamic> _$StoreDetailsResponseToJson(
       'image': instance.image,
       'details': instance.details,
       'services': instance.services,
-      'about': instance.stores,
+      'about': instance.about,
     };
