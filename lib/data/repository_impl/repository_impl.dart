@@ -87,4 +87,56 @@ class RepositoryImpl extends Repository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+
+  
+  @override
+  Future<Either<Failure, HomeObject>> getHome() async {
+    if (await _networkInfoImpl.isConnected) {
+      try {
+        final response = await _remoteDataSource.getHome();
+        if (response.status == ApiInternalStatus.SUCCESS) {
+          // return data(success)
+          // return right
+          return Right(response.toDomain());
+        } else {
+          //return biz logic error
+          // return left
+          return Left(Failure(response.status ?? ApiInternalStatus.FAILURE,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return (Left(ErrorHandler.handle(error).failure));
+      }
+      //its safe to call the api
+    } else {
+      ///return connection error
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+  
+  @override
+  Future<Either<Failure, StoreDetails>> getStoreDetails() async {
+    if (await _networkInfoImpl.isConnected) {
+      try {
+        final response = await _remoteDataSource.getStoreDetails();
+        if (response.status == ApiInternalStatus.SUCCESS) {
+          // return data(success)
+          // return right
+          return Right(response.toDomain());
+        } else {
+          //return biz logic error
+          // return left
+          return Left(Failure(response.status ?? ApiInternalStatus.FAILURE,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return (Left(ErrorHandler.handle(error).failure));
+      }
+      //its safe to call the api
+    } else {
+      ///return connection error
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }
